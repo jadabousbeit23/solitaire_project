@@ -1,0 +1,870 @@
+/* 1 - CSS reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2 - CSS Variables: Solitaire Green & White Theme */
+:root {
+  /* Colors - Solitaire Theme */
+  --primary-color: #006400;       /* Deep card-table green */
+  --secondary-color: #ffffff;     /* White accent */
+  --accent-red: #c41e3a;          /* Hearts/Diamonds red */
+  --accent-black: #1a1a1a;        /* Spades/Clubs black */
+  
+  /* Neutral Colors */
+  --white: #ffffff;
+  --light-gray: #f5f5f5;
+  --gray: #666666;
+  --dark-gray: #333333;
+  --black: #000000;
+  
+  /* Gradients */
+  --hero-gradient: linear-gradient(135deg, #006400 0%, #003d00 100%);
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  
+  /* Typography */
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-heading: 'Georgia', serif;
+  
+  /* Font Sizes */
+  --fs-small: 0.875rem;
+  --fs-normal: 1rem;
+  --fs-medium: 1.125rem;
+  --fs-large: 1.5rem;
+  --fs-xl: 2rem;
+  --fs-xxl: 3rem;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4rem;
+  
+  /* Layout */
+  --max-width: 1200px;
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+/* 3 - Base Styles */
+body {
+  font-family: var(--font-main);
+  color: var(--secondary-color);
+  line-height: 1.6;
+  background-color: var(--primary-color);
+  overflow-x: hidden;
+}
+
+/* 4 - Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--secondary-color);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+h1 { font-size: var(--fs-xxl); }
+h2 { font-size: var(--fs-xl); }
+h3 { font-size: var(--fs-large); }
+h4 { font-size: var(--fs-medium); }
+
+p {
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--fs-normal);
+}
+
+a {
+  background-color: transparent;
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+a:hover {
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
+/* 5 - Layout Container */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  width: 100%;
+}
+
+/* 6 - Buttons */
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--fs-normal);
+  font-weight: 600;
+  text-align: center;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+.btn-primary:hover {
+  background-color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+}
+.btn-secondary:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+
+}
+
+/*7-Nav Bar*/
+.navbar {
+  background-color: var(--primary-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: sticky; /*so it sticks to the top*/
+  top: 0;
+  z-index: 1000; /*so it stays on top*/
+  width: 100%;
+  border-bottom: 2px solid var(--secondary-color); /*white bottom border to separate the nav from other content*/
+}
+.navbar .container {
+  display: flex;
+  justify-content: space-between; /*logo on one side, links on the other*/
+  align-items: center; /*vertically center items*/
+  padding: var(--spacing-sm) var(--spacing-md);
+  height: 70px;
+}
+
+/*Style for logo*/
+
+/* Logo Styling */
+.navbar .logo {
+  font-size: var(--fs-large);              /* 24px */
+  font-weight: 700;
+  color: var(--secondary-color);           /* White text */
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  transition: var(--transition);
+}
+
+.navbar .logo:hover {
+  color: var(--primary-color);
+  transform: scale(1.05); /*slight zoom on hover*/
+  text-shadow: 0 0 10px rgba(225, 225, 225, 0.5); /*glow effect*/
+}
+
+/*Style for nav links container*/
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-md); /*space between links*/
+  margin: 0;
+  padding: 0;
+}
+
+/*Style for individual nav links*/
+.nav-links a {
+  color: var(--secondary-color);
+  font-weight: 500;
+  font-size: var(--fs-normal);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-links a:hover{
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
+/* Animated Underline Effect */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;                            /* Below the text */
+  left: 50%;
+  transform: translateX(-50%);             /* Center it */
+  width: 0;                                /* Start invisible */
+  height: 2px;
+  background-color: var(--secondary-color); /* White line */
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 80%;                              /* Grow on hover */
+}
+
+/*Mobile Nav to add later*/
+
+
+/*Hero Section*/
+.hero {
+  background: var(--hero-gradient);
+  color: var(--secondary-color);
+  min-height: 90vh; /*almost full viewport height*/
+  display: flex;/*flexbox for centering*/
+  align-items: center;/*vertical centering*/
+  justify-content: center;/*horizontal centering*/
+  text-align: center;/*center text*/
+  padding: var(--spacing-xl) var(--spacing-md);/*this padding is from the top/bottom and sides*/
+  position: relative;/*this means we can position things inside relative to this for example absolute positioning which means that they will be positioned relative to this hero section*/
+  border-bottom: 3px solid var(--secondary-color)/*white border at the bottom to separate from next section*/
+}
+
+
+.hero::before{
+  content: '♠ ♥ ♦ ♣' ; /*card suit symbols*/
+  position: absolute; /*absolute positioning*/
+  top: 50%; /*center vertically*/
+  left: 50%; /*center horizontally*/
+  transform: translate(-50% , -50%); /*adjust to be perfectly centered*/
+  font-size: 20rem; /*very large*/
+  opacity: 0.03; /*very faint*/
+  color: var(--secondary-color);
+  letter-spacing: 2rem; /*space out the symbols*/
+  pointer-events: none; /*so it doesn't interfere with clicking and doesnt block my clicks*/
+  z-index: 0; /*behind other content*/
+}
+
+.hero-content {
+  max-width: 800px; /*limit width*/
+  margin: 0 auto; /*center horizontally*/
+  position: relative; /*so it sits above the ::before pseudo element*/
+  z-index: 1; /*above the background symbols*/
+}
+
+/*hero title*/
+.hero h1 {
+  font-size: clamp(2rem , 5vw ,4rem);/*responsive font size*/
+  margin-bottom: var(--spacing-sm);
+  color: var(--secondary-color);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /*subtle shadow for readability*/
+}
+
+/*hero subtitle*/
+.hero .subtitle {
+  font-size: var(--fs-xl);
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: 1rem;                    /* Space between emojis */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/*hero description*/
+.hero .description {
+  font-size: var(--fs-medium);
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.95;
+  line-height: 1.8;
+  color: var(--secondary-color);
+}
+
+/*Download buttons container*/
+.download-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;/*allow wrapping on small screens*/
+  margin-top: var(--spacing-lg);
+}
+
+/*Individual download button*/
+.download-button {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  min-width: 200px; /*minimum width*/
+  border: 2px solid var(--secondary-color);
+}
+
+
+.download-button:hover {
+   background-color: transparent;             /* Transparent background */
+  color: var(--secondary-color); /* White text */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  border-color: var(--secondary-color);      /* White border */
+}
+.download-btn-google-play:hover{
+  background-color: transparent;
+  color: var(--secondary-color);
+  background-image: url("../googleplayicon.png") no-repeat;
+}
+
+.download-btn-app-store:hover{
+  background-color: transparent;
+  color: var(--secondary-color);
+  background-image: url("../appstoreicon.png") no-repeat;
+}
+
+.btn-icon {
+  font-size: var(--fs-large);
+  color: var(--primary-color);
+}
+
+.btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;/*align text to the left*/
+  line-height: 1.2;
+  color: var(--primary-color);
+}
+.btn-text:hover {
+  color: var(--secondary-color);
+}
+
+/*Button small text styles*/
+.btn-small {
+  font-size: var(--fs-small);
+  font-weight: 400;
+  opacity: 0.9;
+  color: var(--primary-color);
+}
+.btn-small:hover {
+  color: var(--secondary-color);
+}
+
+/*Button large text styles*/
+.btn-large {
+  font-size: var(--fs-medium);
+  font-weight: 700;
+  color: var(--primary-color);
+}
+.btn-large:hover {
+  color: var(--secondary-color);
+}
+/*Smaller hero variant for other pages*/
+.hero-small {
+  min-height: 50vh; /*half viewport height*/
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+/*Featured Section will skip for later*/
+
+/*leaderboard section will be here*/
+
+.leaderboard-preview,
+.leaderboard-full {
+  padding: var(--spacing-xl) 0 ;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+
+/*section titles*/
+.leaderboard-preview h2,
+.leaderboard-full h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-xs);
+  color: var(--secondary-color);
+}
+
+/*section intro text*/
+.section-intro{
+  text-align: center;
+  font-size: var(--fs-medium);
+  color: var(--secondary-color);
+  opacity: 0.9;
+  margin-bottom: var(--spacing-lg);
+  max-width: 600px; /*limit width for readability*/
+  margin-left: auto; /*center horizontally*/
+  margin-right: auto; /*center horizontally*/
+}
+
+/*leaderboard header with the button*/
+.leaderboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap; /*allow wrapping on small screens*/
+  gap: var(--spacing-sm);
+}
+
+/*Leaderboard Table Container*/
+.leaderboard-table {
+  background-color: rgba(225, 225, 225, 0.05);/*slightly lighter background by adding 5% to dark green and maintains the dark theme*/
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  box-shadow: var(--box-shadow);
+  overflow-x: auto; /*horizontal scroll on small screens*/
+}
+
+/*Loading State*/
+/*i mean that this will stay here till we get something from js*/
+.loading {
+  text-align:center;
+  padding:var(--spacing-lg);
+  color: var(--secondary-color);
+  font-size:var(--fs-medium);
+}
+
+/*No scores state*/
+.no-scores {
+  text-align: center;
+  padding: var(--spacing-lg);
+  color: var(--secondary-color);
+}
+
+.no-scores p {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--fs-medium);
+}
+
+/*Error state*/
+.error-message {
+  text-align: center;
+  padding: var(--spacing-lg);
+  color: var(--accent-red);
+  background-color: rgb(219, 34, 34);
+  border-radius: var(--border-radius);
+  border-end-end-radius: 1px solid var(--accent-red);
+}
+
+/*Leaderboard Table Styles for the js that will be created after we are done with the css*/
+
+.leaderboard-compact,
+.leaderboard-table table {
+  width: 100%;
+  border-collapse: collapse; /*removes gaps between the cells of the table*/
+}
+.leaderboard-compact th,
+.leaderboard-table th {
+  padding: var(--spacing-sm) var(--spacing-xs);
+  text-align: left;
+  font-weight: 700;
+  color: var(--secondary-color);
+  font-size: var(--fs-normal);
+  text-transform: uppercase; /*more professional look*/
+  letter-spacing: 0.05em; /*slight spacing*/
+}
+
+/*Table Body*/
+.leaderboard-compact tbody tr,
+.leaderboard-table tbody tr {
+  border-bottom: 1px solid rgba(225, 225, 225, 0.1);/*divider*/
+  transition: var(--transition);
+}
+
+.leaderboard-compact tbody tr:hover,
+.leaderboard-table tbody tr:hover {
+  border-bottom: 1px solid rgba(225, 225, 225, 0.08);/*divider*/
+  transform: translateX(5px);/*slight shift to the right*/
+}
+
+/*Table Cells*/
+.leaderboard-compact td,
+.leaderboard-table td {
+  padding: var(--spacing-sm) var(--spacing-xs);
+  color: var(--secondary-color);
+  font-size: var(--fs-normal);
+}
+
+/*Rank Column and the Medals*/
+.rank {
+  font-weight: 700;
+  font-size: var(--fs-large);/*increase the size for the medals*/
+  text-align: center;
+  width: 80px;
+}
+
+/*player name column*/
+.player-name {
+  font-weight: 600;
+  color: var(--secondary-color);
+  min-width: 150px; /*so names dont get in tight spaces and squash or squish*/
+}
+
+/*score column*/
+.score {
+  font-weight: 700;
+  color: var(--secondary-color);
+  text-align: right; /*standard practice forr numeric data is this*/
+  font-size: var(--fs-medium);
+}
+
+/*duration/time column*/
+.time {
+  color: rgba(225, 225, 225, 0.8);
+  text-align: right;
+  font-family: 'Courier New', Courier, monospace;/*good practice is monospace for time because numbers can align perfectly*/
+}
+
+/*Top 3 ranking styles*/
+.rank-1{
+  background-color: rgba(255, 215, 0, 0.1);
+}
+.rank-2{
+  background-color: rgba(192, 192, 192, 0.1);
+}
+.rank-3{
+  background-color: rgba(205, 127, 50, 0.1);
+}
+
+/*Leaderboard actions (the buttons call to action)*/
+.leaderboard-actions{
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+/*Responsive Table Wrapper*/
+@media(max-width: 768px){
+  .leaderboard-table{
+    overflow-x: auto; /*horizontal scroll on mobile*/
+  }
+
+  .leaderboard-compact th,
+  .leaderboard-table th,
+  .leaderboard-compact td,
+  .leaderboard-table td {
+    padding: var(--spacing-xs); /*less padding on mobile*/
+    font-size: var(--fs-small);
+  }
+
+  .rank {
+    width: 60px; /*because on mobile the screen is narrow*/
+  }
+
+  .player-name {
+    min-width: 100px;
+  }
+}
+/*Contact section will be skipped*/
+
+/*Footer Section will be here*/
+
+.footer {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--secondary-color);
+  padding: var(--spacing-xl) 0 var(--spacing-md);
+  border-top: 2px solid var(--secondary-color);
+}
+
+/*footer content*/
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+/*footer branding goes here meaning the logo and the tagline*/
+.footer-brand {
+  flex: 1; /*take the available space*/
+  min-width: 250px; /*preventing from over-shrinking*/
+}
+
+.footer-brand h3 {
+  margin-bottom: var(--spacing-xs);
+  color: var(--secondary-color);
+  font-size: var(--fs-large);
+}
+
+.footer-brand p {
+  color: rgba(225, 225, 225, 0.8);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+}
+
+/*footer links container*/
+.footer-links {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+/*styling each column of the footer*/
+.footer-column {
+  min-width: 150px; /*went away from the right border of the window and closer to  the middle*/
+}
+
+.footer-column h4 {
+  color: var(--secondary-color);
+  font-size: var(--fs-normal);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/*footer list of links styling*/
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer-column a {
+  color: rgba(225, 225, 225, 0.8);
+  font-size: var(--fs-small);
+  transition: var(--transition);
+  display: inline-block; /*for transform effect*/
+}
+.footer-column a:hover {
+  color: var(--secondary-color);
+  transform: translateX(5px);/*shift right*/
+  background-color: transparent;
+}
+
+/*Footer Bottom and final thing*/
+.footer{
+  border-top: 1px solid rgba(225, 225, 225, 0.2);
+  padding: var(--spacing-md);
+  text-align: center;
+}
+.footer-bottom p {
+  color: rgba(225, 225, 225, 0.7);
+  font-size: var(--fs-small);
+  margin: 0;
+}
+
+/*Responsive Footer*/
+@media (max-width: 768px){
+  .footer-content{
+    flex-direction: column; /*will stack vertically*/
+  }
+
+  .footer-brand {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .footer-links {
+    justify-content: center; /*center the columns*/
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+}
+
+/*add score feature styling*/
+.add-score-section {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--primary-color);
+  min-height: 60vh;  /*will take space*/
+}
+
+/*form container - center the form on the page*/
+.form-container {
+  max-width: 600px; /*not too wide and will be better UX*/
+  margin: 0 auto var(--spacing-xl);
+  background-color: rgba(225, 225, 225, 0.05);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  border: 2px solid rgba(225, 225, 225, 0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+/*styling of form element*/
+.score-form{
+  margin-top: var(--spacing-md);
+}
+
+/*Form Group (label + input wrapper ) because ut easy to style as a unit and its a common form pattern*/
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+
+/*form labels*/
+.form-group label {
+  display: block; /*full width , and own the line*/
+  color: var(--secondary-color);
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--fs-normal);
+}
+
+/*text input fields because this is more beautiful than the browser and matches my design*/
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"] {
+  width: 100%;
+  padding: var(--spacing-sm);
+  font-size: var(--fs-normal);
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  font-family: var(--font-main);
+}
+
+/*focus state for input (when user clicks in field)*/
+.form-group input:focus {
+  outline: none;/*remove the browser default*/
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(225, 225, 225, 0.2); /*for a glowing effect*/
+  transform: scale(1.02);
+}
+
+/*placeholder text*/
+.form-group input::placeholder {
+  color: rgba(0, 100, 0, 0.5);
+  font-style: italic;
+}
+
+/*input error state*/
+.form-group input.error {
+   border-color: var(--accent-red);
+  background-color: rgba(196, 30, 58, 0.05);
+}
+
+/*submit button*/
+.score-form button[type="submit"] {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--fs-medium);
+  font-weight: 700;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: var(--spacing-sm);
+}
+
+.score-form button[type="submit"]:hover {
+  background-color: transparent;
+  color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.score-form button[type="submit"]:active {
+  transform: translateY(0); /*pushes down when clicked*/
+}
+
+/* Disabled Button State */
+/* Disabled Button State */
+.score-form button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.score-form button[type="submit"]:disabled:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  transform: none;
+}
+/* Form Messages (Success/Error) */
+.form-message {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius);
+  text-align: center;
+  font-weight: 600;
+  display: none;                           /* Hidden by default */
+}
+/* Success Message */
+.form-message.success {
+  display: block;
+  background-color: rgba(0, 200, 0, 0.2);  /* Light green background */
+  color: var(--secondary-color);
+  border: 2px solid rgba(0, 200, 0, 0.5);
+}
+
+/* Error Message */
+.form-message.error {
+  display: block;
+  background-color: rgba(196, 30, 58, 0.2);  /* Light red background */
+  color: var(--secondary-color);
+  border: 2px solid var(--accent-red);
+}
+
+/* Info Box (Instructions) */
+.info-box {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-box h3 {
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.info-box ul {
+  color: var(--secondary-color);
+  padding-left: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.info-box li {
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.6;
+}
+
+.error-text {
+  color: var(--accent-red);
+  font-size: var(--fs-small);
+  margin-top: var(--spacing-xs);
+  display: none;                           /* Hidden by default */
+}
+
+.error-text.show {
+  display: block;
+}
+
+/* Responsive Form Adjustments */
+@media (max-width: 768px) {
+  .form-container {
+    padding: var(--spacing-md);
+    margin: 0 var(--spacing-sm) var(--spacing-lg);
+  }
+  
+  .info-box {
+    margin: 0 var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+  
+  .form-group input {
+    font-size: var(--fs-normal);
+  }
+  
+  .score-form button[type="submit"] {
+    font-size: var(--fs-normal);
+  }
+}
